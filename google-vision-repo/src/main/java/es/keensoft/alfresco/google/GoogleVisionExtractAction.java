@@ -27,9 +27,11 @@ import org.alfresco.service.transaction.TransactionService;
 import org.alfresco.util.transaction.TransactionListenerAdapter;
 
 import es.keensoft.alfresco.google.model.GoogleVisionModel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class GoogleVisionExtractAction extends ActionExecuterAbstractBase {
-	
+	private static final Logger logger = LoggerFactory.getLogger(GoogleVisionExtractAction.class);
 	private NodeService nodeService;
 	private ContentService contentService;
 	private TaggingService taggingService;
@@ -97,16 +99,15 @@ public class GoogleVisionExtractAction extends ActionExecuterAbstractBase {
                          
                         @Override
                         public Void execute() throws Throwable {
-                        	
                     		ContentReader reader = contentService.getReader(nodeToBeGoogleVisioned, ContentModel.PROP_CONTENT);
-                    		
+
                     	    GoogleVisionBean gvBean = googleVisionWorker.execute(reader);
-                    	    
+
                     	    // Labels
                     	    for (String label : gvBean.getLabels()) {
                     	    	taggingService.addTag(nodeToBeGoogleVisioned, label);
                     	    }
-                    	    
+
                     	    // Text
                     	    if (gvBean.getText() != null && !gvBean.getText().isEmpty()) {
                         	    String description = "google vision:";
@@ -119,13 +120,13 @@ public class GoogleVisionExtractAction extends ActionExecuterAbstractBase {
 	                    	    }
 	                    	    nodeService.setProperty(nodeToBeGoogleVisioned, ContentModel.PROP_DESCRIPTION, description);
                     	    }
-                    	    
+
                     	    // Landmark and Logo
                     	    Map<QName, Serializable> aspectProperties = new HashMap<QName, Serializable>();
                     	    aspectProperties.put(GoogleVisionModel.PROP_LOGO, gvBean.getLogo());
                     	    aspectProperties.put(GoogleVisionModel.PROP_LANDMARK, gvBean.getLandmark());
 							nodeService.addAspect(nodeToBeGoogleVisioned, GoogleVisionModel.ASPECT_GOOGLE_VISION, aspectProperties);
-                            
+
                             return null;
                         }
                     };
@@ -134,7 +135,7 @@ public class GoogleVisionExtractAction extends ActionExecuterAbstractBase {
                         RetryingTransactionHelper txnHelper = transactionService.getRetryingTransactionHelper();
                         txnHelper.doInTransaction(callback, false, true);
                     } catch (Throwable e) {
-                        e.printStackTrace();
+                    	logger.error(e.getMessage(), e);
                     }
                      
                     return null;

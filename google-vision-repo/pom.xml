@@ -5,9 +5,9 @@
     <groupId>es.keensoft.alfresco</groupId>
     <artifactId>google-vision-repo</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>google-vision-repo Repository AMP project</name>
-    <packaging>amp</packaging>
-    <description>Manages the lifecycle of the google-vision-repo Repository AMP (Alfresco Module Package)</description>
+    <name>google-vision-repo Repository JAR project</name>
+    <packaging>jar</packaging>
+    <description>Manages the lifecycle of the google-vision-repo Repository JAR</description>
 
     <parent>
         <groupId>org.alfresco.maven</groupId>
@@ -63,26 +63,6 @@
             <groupId>${alfresco.groupId}</groupId>
             <artifactId>alfresco-repository</artifactId>
 	    </dependency>
-		<dependency>
-			<groupId>com.google.apis</groupId>
-			<artifactId>google-api-services-vision</artifactId>
-			<version>v1-rev2-1.21.0</version>
-		</dependency>
-		<dependency>
-			<groupId>com.google.api-client</groupId>
-			<artifactId>google-api-client</artifactId>
-			<version>1.21.0</version>
-		</dependency>
-		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-			<version>19.0</version>
-		</dependency>
-		<dependency>
-			<groupId>com.google.apis</groupId>
-			<artifactId>google-api-services-translate</artifactId>
-			<version>v2-rev44-1.21.0</version>
-		</dependency>    
     </dependencies>
 
     <profiles>

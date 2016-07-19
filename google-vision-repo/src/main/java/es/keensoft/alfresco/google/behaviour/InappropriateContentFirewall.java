@@ -1,28 +1,18 @@
 package es.keensoft.alfresco.google.behaviour;
 
-import java.io.File;
-
+import es.keensoft.alfresco.google.GoogleVisionWorker;
 import org.alfresco.model.ContentModel;
-import org.alfresco.repo.content.ContentLimitViolationException;
 import org.alfresco.repo.content.ContentServicePolicies;
 import org.alfresco.repo.policy.Behaviour.NotificationFrequency;
 import org.alfresco.repo.policy.JavaBehaviour;
 import org.alfresco.repo.policy.PolicyComponent;
 import org.alfresco.service.cmr.repository.ContentData;
-import org.alfresco.service.cmr.repository.ContentReader;
 import org.alfresco.service.cmr.repository.ContentService;
 import org.alfresco.service.cmr.repository.NodeRef;
-import org.alfresco.service.cmr.repository.NodeRef.Status;
 import org.alfresco.service.cmr.repository.NodeService;
 import org.alfresco.service.namespace.QName;
-import org.alfresco.util.TempFileProvider;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.extensions.surf.util.I18NUtil;
-
-import com.google.common.io.Files;
-
-import es.keensoft.alfresco.google.GoogleVisionWorker;
 
 public class InappropriateContentFirewall  implements ContentServicePolicies.OnContentPropertyUpdatePolicy {
 	
@@ -41,7 +31,7 @@ public class InappropriateContentFirewall  implements ContentServicePolicies.OnC
 	
 	@Override
 	public void onContentPropertyUpdate(NodeRef nodeRef, QName propertyQName, ContentData beforeValue, ContentData afterValue) {
-		
+		/*
     	if (googleVisionWorker.getSafeSearchConfig().getEnabled()) {
 	        Status status = nodeService.getNodeStatus(nodeRef);
 	        boolean innapropiateContent = false;
@@ -63,6 +53,7 @@ public class InappropriateContentFirewall  implements ContentServicePolicies.OnC
 	        	}
 	        }
     	}
+    	*/
 
 	}
 	
