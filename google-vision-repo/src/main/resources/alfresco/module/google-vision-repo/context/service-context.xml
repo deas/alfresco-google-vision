@@ -4,48 +4,44 @@
 <beans>
 
 
-		<bean id="google-vision-action" class="es.keensoft.alfresco.google.GoogleVisionExtractAction" parent="action-executer" init-method="init">
+    <bean id="google-vision-action" class="es.keensoft.alfresco.google.GoogleVisionExtractAction"
+          parent="action-executer" init-method="init">
         <property name="nodeService" ref="NodeService"/>
-        <property name="contentService" ref="ContentService" />
-        <property name="taggingService" ref="TaggingService" />
-    	<property name="transactionService" ref="TransactionService" />
-    	<property name="threadPoolExecutor" ref="googleActionsThreadPoolExecutor" />
-        <property name="googleVisionWorker" ref="google-vision-worker" />
-    </bean>
-    
-	<bean id="googleActionsThreadPoolExecutor" class="org.alfresco.util.ThreadPoolExecutorFactoryBean">
-        <property name="poolName" value="googleVisionActionsThreadPool" />
-        <property name="corePoolSize" value="${google.pool.core.size}" />
-        <property name="maximumPoolSize" value="${google.pool.maximum.size}" />
-        <property name="threadPriority" value="${google.pool.thread.priority}" />
+        <property name="contentService" ref="ContentService"/>
+        <property name="taggingService" ref="TaggingService"/>
+        <property name="transactionService" ref="TransactionService"/>
+        <property name="threadPoolExecutor" ref="googleActionsThreadPoolExecutor"/>
+        <property name="googleVisionWorker" ref="google-vision-worker"/>
     </bean>
 
-	<bean id="google-vision-worker" class="es.keensoft.alfresco.google.GoogleVisionWorker">
-	    <property name="applicationName" value="${google.vision.application.name}" />
-	    <property name="credentialsJsonPath" value="${google.vision.credentials.json}" />
-	    <property name="maxResults" value="${google.vision.max.results}" />
-	    <property name="translateLanguage" value="${google.translate.language}" />
-	    <property name="translateApiKey" value="${google.translate.api.key}" />
-		<property name="endpoint" value="${google.vision.endpoint}"/>
-		<property name="remoteConnectorService" ref="remoteConnectorService"/>
-	</bean>
-	
-	<!--bean id="inappropriateContentFirewall"
-	      class="es.keensoft.alfresco.google.behaviour.InappropriateContentFirewall"
-	      init-method="init">
-    	<property name="policyComponent" ref="policyComponent"/>
-	    <property name="nodeService" ref="NodeService" />
+    <bean id="googleActionsThreadPoolExecutor" class="org.alfresco.util.ThreadPoolExecutorFactoryBean">
+        <property name="poolName" value="googleVisionActionsThreadPool"/>
+        <property name="corePoolSize" value="${google.pool.core.size}"/>
+        <property name="maximumPoolSize" value="${google.pool.maximum.size}"/>
+        <property name="threadPriority" value="${google.pool.thread.priority}"/>
+    </bean>
+
+    <bean id="google-vision-worker" class="es.keensoft.alfresco.google.GoogleVisionWorker">
+        <property name="endpoint" value="${google.vision.endpoint}"/>
+        <property name="remoteConnectorService" ref="remoteConnectorService"/>
+    </bean>
+
+    <!--bean id="inappropriateContentFirewall"
+          class="es.keensoft.alfresco.google.behaviour.InappropriateContentFirewall"
+          init-method="init">
+        <property name="policyComponent" ref="policyComponent"/>
+        <property name="nodeService" ref="NodeService" />
         <property name="contentService" ref="ContentService" />
         <property name="googleVisionWorker" ref="google-vision-worker" />
-	</bean-->
-	
-	<bean id="google-vision-repo_ResourceBundles" class="org.alfresco.i18n.ResourceBundleBootstrapComponent">
-      <property name="resourceBundles">
-         <list>
-    	    <value>alfresco.module.google-vision-repo.messages.repo</value>
-    	 </list>
-      </property>
-   	</bean>
-	
+    </bean-->
+
+    <bean id="google-vision-repo_ResourceBundles" class="org.alfresco.i18n.ResourceBundleBootstrapComponent">
+        <property name="resourceBundles">
+            <list>
+                <value>alfresco.module.google-vision-repo.messages.repo</value>
+            </list>
+        </property>
+    </bean>
+
 
 </beans>

@@ -23,4 +23,67 @@
         </property>
     </bean>
 
+    <!-- onActionSimpleRepoAction -->
+    <bean id="evaluator.doclib.action.canDoVision" parent="evaluator.doclib.action.chainedMatchAll">
+        <property name="evaluators">
+            <list>
+                <ref bean="evaluator.doclib.action.imageMimetype"/>
+                <bean parent="evaluator.doclib.indicator.isVisioned">
+                    <property name="negateOutput" value="true" />
+                </bean>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="evaluator.doclib.indicator.isVisioned" parent="evaluator.doclib.action.hasAspect">
+        <property name="aspects">
+            <list>
+                <value>gvis:googleVision</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="evaluator.doclib.action.imageMimetype" parent="evaluator.doclib.action.isMimetype">
+        <property name="mimetypes">
+            <list>
+                <value>image/jp2</value>
+                <value>image/vnd.adobe.photoshop</value>
+                <value>image/vnd.adobe.premiere</value>
+                <value>image/cgm</value>
+                <value>image/gif</value>
+                <value>image/ief</value>
+                <value>image/bmp</value>
+                <value>image/jpeg</value>
+                <value>image/svg+xml</value>
+                <value>image/x-raw-adobe</value>
+                <value>image/x-raw-hasselblad</value>
+                <value>image/x-raw-fuji</value>
+                <value>image/x-raw-canon</value>
+                <value>image/x-raw-kodak</value>
+                <value>image/x-raw-minolta</value>
+                <value>image/x-raw-nikon</value>
+                <value>image/x-raw-olympus</value>
+                <value>image/x-raw-pentax</value>
+                <value>image/x-raw-sony</value>
+                <value>image/x-raw-sigma</value>
+                <value>image/x-raw-panasonic</value>
+                <value>image/x-raw-leica</value>
+                <value>image/x-raw-red</value>
+                <value>image/x-portable-bitmap</value>
+                <value>image/x-portable-graymap</value>
+                <value>image/png</value>
+                <value>image/x-portable-anymap</value>
+                <value>image/x-portable-pixmap</value>
+                <value>image/x-cmu-raster</value>
+                <value>image/x-rgb</value>
+                <value>image/tiff</value>
+                <value>image/x-xbitmap</value>
+                <value>image/x-xpixmap</value>
+                <value>image/x-xwindowdump</value>
+                <value>image/vnd.dwg</value>
+                <value>image/x-dwt</value>
+            </list>
+        </property>
+    </bean>
+
 </beans>

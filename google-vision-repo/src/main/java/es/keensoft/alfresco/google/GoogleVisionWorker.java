@@ -12,11 +12,13 @@ import java.util.List;
 
 public class GoogleVisionWorker {
 	private static final Logger logger = LoggerFactory.getLogger(GoogleVisionWorker.class);
+	/*
     private String applicationName;
     private String credentialsJsonPath;
     private Integer maxResults;
     private String translateLanguage;
     private String translateApiKey;
+    */
 	private RemoteConnectorService remoteConnectorService;
 	private ContentService contentService;
 	private String endpoint;
@@ -50,7 +52,7 @@ public class GoogleVisionWorker {
     public boolean isImage(ContentReader reader) {
 		 return reader.getMimetype().startsWith("image/");
 	}
-
+	/*
 	public void setApplicationName(String applicationName) {
 		this.applicationName = applicationName;
 	}
@@ -70,7 +72,7 @@ public class GoogleVisionWorker {
 	public void setTranslateApiKey(String translateApiKey) {
 		this.translateApiKey = translateApiKey;
 	}
-
+	*/
 	public void setRemoteConnectorService(RemoteConnectorService remoteConnectorService) {
 		this.remoteConnectorService = remoteConnectorService;
 	}

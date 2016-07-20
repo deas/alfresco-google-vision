@@ -26,4 +26,24 @@
         </forms>
     </config>
 
+    <config evaluator="string-compare" condition="DocLibActions">
+        <actions>
+            <action id="cr-google-vision" type="javascript" label="cr.actions.google-vision">
+                <param name="function">onActionSimpleRepoAction</param>
+                <param name="action">google-vision-action</param>
+                <param name="successMessage">message.success</param>
+                <param name="failureMessage">message.failure</param>
+                <evaluator>evaluator.doclib.action.canDoVision</evaluator>
+            </action>
+        </actions>
+        <actionGroups>
+            <actionGroup id="document-details">
+                <action index="530" id="cr-google-vision"/>
+            </actionGroup>
+            <actionGroup id="document-browse">
+                <action index="530" id="cr-google-vision"/>
+            </actionGroup>
+        </actionGroups>
+    </config>
+
 </alfresco-config>
